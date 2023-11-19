@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getir_clone_app/ui/views/campaigns.dart';
 import 'package:getir_clone_app/ui/views/discovery.dart';
@@ -22,14 +23,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[currentIndex],
-      floatingActionButton: FloatingActionButton(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
+      floatingActionButton: SizedBox(
+        width: 80,
+        height: 80,
+        child: FloatingActionButton(backgroundColor: Color(0xFF5D3EBD),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
 
-      },child: Icon(Icons.add,color: Colors.yellowAccent,)),
+        },child: Image.asset("assets/images/ic_fab.png",color: Color(0XFFF7D102),height: 50,width: 50,)),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.black54,
+        selectedItemColor: Color(0xFF5D3EBD),
+        unselectedItemColor: Colors.black38,
         currentIndex: currentIndex,
 
         onTap: (value) {
