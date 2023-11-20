@@ -14,6 +14,7 @@ class PageViewItems  {
     PageViewModel(image: 'im_getir_buyuk', imageId: 3),
 
 
+
   ];
 
 

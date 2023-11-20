@@ -31,24 +31,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
         },child: Image.asset("assets/images/ic_fab.png",color: Color(0XFFF7D102),height: 50,width: 50,)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        selectedItemColor: Color(0xFF5D3EBD),
-        unselectedItemColor: Colors.black38,
-        currentIndex: currentIndex,
+      bottomNavigationBar: BottomAppBar(
+        height: 70,
 
-        onTap: (value) {
-          setState(() {
-            currentIndex = value;
-          });
-        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(onPressed: () {
 
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.search),label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.person),label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.card_giftcard),label: ""),
-        ],
+            }, icon: Icon(Icons.home,size: 30,color: Color(0xFF5D3EBD),)),
+            IconButton(onPressed: () {
+
+            }, icon: Icon(Icons.search,size: 30,)),
+            SizedBox(width: 24),
+            IconButton(onPressed: () {
+
+            }, icon: Icon(Icons.person,size: 30,)),
+            IconButton(onPressed: () {
+
+            }, icon: Icon(Icons.card_giftcard,size: 30,)),
+          ],
+        ),
       ),
     );
   }

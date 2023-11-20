@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   titled_navigation_bar: ^5.0.0-nullsafety.0
+  flutter_bloc:
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +57,11 @@ flutter:
   assets:
     - assets/images/
 
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: fonts/open_sans.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

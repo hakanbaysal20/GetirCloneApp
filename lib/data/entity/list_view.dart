@@ -1,9 +1,9 @@
 
-class ListViewModel {
+class CategoryModel {
   String categories;
   String image;
 
-  ListViewModel({required this.categories,required this.image});
+  CategoryModel({required this.categories,required this.image});
   String get imageWithPath => 'assets/images/$image.png';
 }
 
