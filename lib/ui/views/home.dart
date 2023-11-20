@@ -15,34 +15,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late int currentPage;
-  var pageController = PageController();
-  late Timer timer;
-  @override
-  void dispose() {
-    pageController.dispose();
-    timer.cancel();
-    super.dispose();
-  }
 
   @override
   void initState() {
     super.initState();
     context.read<HomeCubit>().loadCategory();
-    currentPage = 0;
-    pageController = PageController(initialPage: currentPage);
-
-    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
-      scrollPage();
-    });
-  }
-  void scrollPage(){
-    currentPage = (currentPage + 1) % PageViewItems.pageViewItems.length;
-
-    pageController.animateToPage(currentPage, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
-
-  }
-
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,27 +95,18 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                             );
-
-
                           },
                         );
                       }else{
                         return const Center();
                       }
-
                     },
-
                   ),
-
-
               ],
             ),
 
           ),
         ),
-
-
       );
-    
   }
 }
