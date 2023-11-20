@@ -5,9 +5,9 @@ class GetirRepository {
 
   Future<List<CategoryModel>> categoryList() async {
     var categoryList =<CategoryModel>[];
-    var category1 =  CategoryModel(categories: "Yaz Özel", image: "assets/images/im_special_summer.png");
+    var category1 =  CategoryModel(categories: "Süper İkili", image: "assets/images/im_super.png");
     var category2 =  CategoryModel(categories: "İndirimler", image: "assets/images/im_discount.png");
-    var category3 =  CategoryModel(categories: "Bana Özel", image: "assets/images/im_special.png");
+    var category3 =  CategoryModel(categories: "Yeni Ürünler", image: "assets/images/im_new_product.png");
     var category4 =  CategoryModel(categories: "Su & İçecek", image: "assets/images/im_drink.png");
     var category5 =  CategoryModel(categories: "Meyve & S..", image: "assets/images/im_fruit_vegetable.png");
     var category6 =  CategoryModel(categories: "Fırından", image: "assets/images/im_bakery.png");

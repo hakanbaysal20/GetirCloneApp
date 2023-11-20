@@ -26,7 +26,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       floatingActionButton: SizedBox(
         width: 80,
         height: 80,
-        child: FloatingActionButton(backgroundColor: Color(0xFF5D3EBD),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
+        child: FloatingActionButton(backgroundColor: Color.(0xFF5D3EBD),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
 
         },child: Image.asset("assets/images/ic_fab.png",color: Color(0XFFF7D102),height: 50,width: 50,)),
       ),

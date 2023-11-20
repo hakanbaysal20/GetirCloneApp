@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,7 +81,7 @@ class _HomeState extends State<Home> {
                             crossAxisCount: 4,
                             childAspectRatio: 1 / 1.3,
                           ),
-                          itemCount: categoryList!.length,
+                          itemCount: categoryList.length,
                           itemBuilder: (context, index) {
                             var category = categoryList[index];
                             return  Padding(
@@ -90,7 +89,11 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Image.asset("${category.image}"),
+                                    Container(
+                                      decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12)),color: Color(
+                                          0xF919191)),
+                                      child: Image.asset(category.image,fit: BoxFit.contain),
+                                    ),
                                       Text(category.categories,style: const TextStyle(fontFamily: 'OpenSans',fontWeight: FontWeight.w600),),
                                   ],
                                 ),
