@@ -92,9 +92,9 @@ class _HomeState extends State<Home> {
                                     Container(
                                       decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12)),color: Color(
                                           0xF919191)),
-                                      child: Image.asset(category.image,fit: BoxFit.contain),
+                                      child: Image.asset(category.category_image,fit: BoxFit.contain),
                                     ),
-                                      Text(category.categories,style: const TextStyle(fontFamily: 'OpenSans',fontWeight: FontWeight.w600),),
+                                      Text(category.category_name,style: const TextStyle(fontFamily: 'OpenSans',fontWeight: FontWeight.w600),),
                                   ],
                                 ),
                             );

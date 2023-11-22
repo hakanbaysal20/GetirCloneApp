@@ -12,9 +12,4 @@ class HomeCubit extends Cubit<List<CategoryModel>> {
     var list = await gRepo.categoryList();
     emit(list);
   }
-
-
-
-
-
 }
