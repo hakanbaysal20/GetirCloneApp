@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getir_clone_app/constants/color_constants.dart';
 import 'package:getir_clone_app/ui/views/campaigns.dart';
 import 'package:getir_clone_app/ui/views/discovery.dart';
 import 'package:getir_clone_app/ui/views/home.dart';
@@ -26,9 +26,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
       floatingActionButton: SizedBox(
         width: 70,
         height: 70,
-        child: FloatingActionButton(backgroundColor: Color(0xFF5D3EBD),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
+        child: FloatingActionButton(backgroundColor: ColorConstants.primaryColor,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
 
-        },child: Image.asset("assets/images/ic_fab.png",color:Color(0XFFF7D102),height: 50,width: 50,)),
+        },child: Image.asset("assets/images/ic_fab.png",color:ColorConstants.brandYellow,height: 50,width: 50,)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -39,17 +39,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
           children: [
             IconButton(onPressed: () {
 
-            }, icon: Icon(Icons.home,size: 30,color: Color(0xFF5D3EBD),)),
+            }, icon: const Icon(Icons.home,size: 30,color: ColorConstants.primaryColor,)),
             IconButton(onPressed: () {
 
-            }, icon: Icon(Icons.search,size: 30,)),
-            SizedBox(width: 24),
+            }, icon: const Icon(Icons.search,size: 30,)),
+            const SizedBox(width: 24),
             IconButton(onPressed: () {
 
-            }, icon: Icon(Icons.person,size: 30,)),
+            }, icon: const Icon(Icons.person,size: 30,)),
             IconButton(onPressed: () {
 
-            }, icon: Icon(Icons.card_giftcard,size: 30,)),
+            }, icon: const Icon(Icons.card_giftcard,size: 30,)),
           ],
         ),
       ),

@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:getir_clone_app/data/entity/list_model.dart';
+import 'package:getir_clone_app/constants/color_constants.dart';
+import 'package:getir_clone_app/data/entity/list_models.dart';
 import 'package:getir_clone_app/data/entity/page_view.dart';
 import 'package:getir_clone_app/ui/cubit/home_cubit.dart';
 import 'package:getir_clone_app/ui/views/page_view_card.dart';
@@ -12,16 +13,18 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
+  PageController pageController = PageController();
   @override
   void initState() {
     super.initState();
     context.read<HomeCubit>().loadCategory();
     context.read<HomeCubit>().loadAdress();
+    pageController = PageController(viewportFraction: 0.8);
     }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.deepPurple,title: Image.asset("assets/images/im_getir.png"),centerTitle: true,),
+        appBar: AppBar(backgroundColor: ColorConstants.primaryColor,title: Image.asset("assets/images/im_getir.png"),centerTitle: true,),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -31,15 +34,14 @@ class _HomeState extends State<Home> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                        Expanded(
-                        flex: 6,
-                        child: Row(
+                        Row(
                             children: [
                               TextButton(onPressed: () {
                                 showModalBottomSheet(
                                   isScrollControlled: true,
                                   context: context,
-                                  builder: (context) => DraggableScrollableSheet(expand: false,builder: (context, scrollController) => SingleChildScrollView(
+                                  builder: (context) => DraggableScrollableSheet(expand: false,
+                                    builder: (context, scrollController) => SingleChildScrollView(
                                     controller: scrollController,
                                     child: Column(
                                         children: [
@@ -49,13 +51,16 @@ class _HomeState extends State<Home> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Text("Teslimat adresinizi seçin.",style: TextStyle(fontWeight: FontWeight.w400,color: Colors.black54,fontSize: 16),),
+                                                Text("Teslimat adresinizi seçin.",
+                                                  style: TextStyle(fontWeight: FontWeight.w400,color: ColorConstants.blackLight,fontSize: 16),),
                                                 Row(
                                                   children: [
-                                                    Icon(Icons.location_on_outlined,color: Colors.deepPurple,),
+                                                    Icon(Icons.location_on_outlined,color: ColorConstants.primaryColor,),
                                                     Text(
                                                       "Adreslerim",
-                                                      style: TextStyle(fontWeight: FontWeight.bold,decoration: TextDecoration.underline,color: Colors.deepPurple),
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,decoration: TextDecoration.underline,
+                                                          color: ColorConstants.primaryColor),
 
                                                     ),
                                                   ],
@@ -76,7 +81,8 @@ class _HomeState extends State<Home> {
                                                       itemBuilder: (context, index) {
                                                       var adress = state.adressModel[index];
                                                       return Container(
-                                                        decoration: const BoxDecoration(border: Border(top: BorderSide(color: Colors.black12))),
+                                                        decoration: const BoxDecoration(
+                                                            border: Border(top: BorderSide(color: ColorConstants.blackLight))),
                                                         child: TextButton(onPressed: () {
 
                                                         }, child: Column(
@@ -84,10 +90,10 @@ class _HomeState extends State<Home> {
                                                             Row(
                                                               children: [
                                                                 Image.asset("assets/images/ic_home.png"),
-                                                                Text(adress.type_id.toString()),
+                                                                Text(adress.type_id.toString(),style: TextStyle(color: ColorConstants.blackLight),),
                                                               ],
                                                             ),
-                                                            Text(adress.adress_path),
+                                                            Text(adress.adress_path,style: TextStyle(color: ColorConstants.blackLight),),
                                                            ],
                                                           ),
                                                         ),
@@ -114,39 +120,39 @@ class _HomeState extends State<Home> {
 
                     ],
                   ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          decoration: const BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),topLeft: Radius.circular(12)),color: Color(0XFFF7D102),),
+                      Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),
+                                topLeft: Radius.circular(12)),color: ColorConstants.brandYellow,),
                           child: const Column(
                               children: [
-                                Text("Tvs",style: TextStyle(color: Colors.deepPurple),),
-                                Text("15-20 dk",style: TextStyle(color: Colors.deepPurple),),
+                                Text("Tvs",style: TextStyle(color: ColorConstants.primaryColor),),
+                                Text("15-20 dk",style: TextStyle(color: ColorConstants.primaryColor),),
                               ],
                             ),
                           ),
-                      ),
+
                     ],
                   ),
                 ),
-                   SizedBox(
-                     width: 400,
-                     height: 200,
-                     child: PageView.builder(
-                       physics: const BouncingScrollPhysics(),
-
-                      itemCount: PageViewItems.pageViewItems.length ,
-                      itemBuilder: (context, index) {
-                            return PageViewCard(model: PageViewItems.pageViewItems[index]);
-                          },
+                SizedBox(
+                  height: 200,
+                  child: PageView.builder(
+                    controller: pageController,
+                    itemCount: PageViewItems.pageViewItems.length,
+                    itemBuilder: (context, index) {
+                      return PageViewCard(model: PageViewItems.pageViewItems[index]);
+                    },
                   ),
-                   ),
+                ),
 
-                  BlocBuilder<HomeCubit,ListModels>(
+
+
+                BlocBuilder<HomeCubit,ListModels>(
                     builder: (context, state) {
                       if(state.categoryModel.isNotEmpty){
                         return GridView.builder(
+                          physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
@@ -161,7 +167,8 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
-                                      decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12)),color: Color(0xF919191)),
+                                      decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(12)),color: ColorConstants.greyLight),
                                       child: Image.asset(category.category_image,fit: BoxFit.contain),
                                     ),
                                       Text(category.category_name,style: const TextStyle(fontFamily: 'OpenSans',fontWeight: FontWeight.w600),),
@@ -177,7 +184,6 @@ class _HomeState extends State<Home> {
                   ),
               ],
             ),
-
           ),
         ),
       );

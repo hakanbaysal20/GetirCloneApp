@@ -2,7 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getir_clone_app/data/entity/adress_model.dart';
 import 'package:getir_clone_app/data/entity/category_model.dart';
-import 'package:getir_clone_app/data/entity/list_model.dart';
+import 'package:getir_clone_app/data/entity/list_models.dart';
 import 'package:getir_clone_app/data/repository/getir_repository.dart';
 
 class HomeCubit extends Cubit<ListModels> {
