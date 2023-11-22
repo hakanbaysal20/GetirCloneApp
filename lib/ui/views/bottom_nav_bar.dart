@@ -24,15 +24,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       body: pages[currentIndex],
       floatingActionButton: SizedBox(
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
         child: FloatingActionButton(backgroundColor: Color(0xFF5D3EBD),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),onPressed: () {
 
-        },child: Image.asset("assets/images/ic_fab.png",color: Color(0XFFF7D102),height: 50,width: 50,)),
+        },child: Image.asset("assets/images/ic_fab.png",color:Color(0XFFF7D102),height: 50,width: 50,)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        height: 70,
+        height: 60,
 
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
