@@ -13,11 +13,11 @@ class GetirRepository {
 
     return List.generate(rows.length,(index) {
       var row = rows[index];
-      var category_id = row["category_id"];
-      var category_name = row["category_name"];
-      var category_image = row["category_image"];
+      var categoryId = row["category_id"];
+      var categoryName = row["category_name"];
+      var categoryImage = row["category_image"];
 
-      return CategoryModel(category_id: category_id, category_name: category_name, category_image: category_image);
+      return CategoryModel(category_id: categoryId, category_name: categoryName, category_image: categoryImage);
 
     });
 
@@ -31,7 +31,7 @@ class GetirRepository {
       var row = rows[index];
       var city = CityModel(row["city_id"], row["city_name"]);
       var type = TypeModel(row["type_id"], row["type_name"]);
-      var adress = AdressModel(adress_id: row["adress_id"], adress_path: row["adress_path"], type: type, city: city);
+      var adress = AdressModel(adressId: row["adress_id"], adressPath: row["adress_path"], type: type, city: city);
 
       return adress;
     });

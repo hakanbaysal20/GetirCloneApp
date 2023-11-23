@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getir_clone_app/constants/color_constants.dart';
@@ -36,8 +35,8 @@ class _HomeState extends State<Home> {
                     children: [
                         Expanded(flex: 6,
                           child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomRight: Radius.circular(12),topRight: Radius.circular(12))),
-                            child: Row(
+                            decoration: const BoxDecoration(borderRadius: BorderRadius.only(bottomRight: Radius.circular(12),topRight: Radius.circular(12))),
+                            child: const Row(
                                 children: [
                                   ShowButton(),
                     ],
@@ -47,7 +46,11 @@ class _HomeState extends State<Home> {
                       Expanded(
                         flex: 2,
                         child: Container(
-                            color: ColorConstants.brandYellow,
+                          decoration: const BoxDecoration(color: ColorConstants.brandYellow,borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16.0),
+                            bottomLeft: Radius.circular(16.0),
+                          )),
+
                             child: const Column(
                                 children: [
                                   Text("TVS",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.w500),),
@@ -73,7 +76,7 @@ class _HomeState extends State<Home> {
                     builder: (context, state) {
                       if(state.categoryModel.isNotEmpty){
                         return GridView.builder(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           shrinkWrap: true,
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
@@ -159,7 +162,7 @@ class ShowButton extends StatelessWidget {
                         height: 400,
                         width: 400,
                         child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           itemCount: state.adressModel.length,
                             itemBuilder: (context, index) {
                             var adress = state.adressModel[index];
@@ -173,10 +176,10 @@ class ShowButton extends StatelessWidget {
                                   Row(
                                     children: [
                                       Image.asset("assets/images/ic_home.png"),
-                                      Text(adress.type.type_name,style: TextStyle(color: ColorConstants.blackLight),),
+                                      Text(adress.type.type_name,style: const TextStyle(color: ColorConstants.blackLight),),
                                     ],
                                   ),
-                                  Text("${adress.adress_path} ${adress.city.city_name} Merkez",style: TextStyle(color: ColorConstants.blackLight),),
+                                  Text("${adress.adressPath} ${adress.city.city_name} Merkez",style: const TextStyle(color: ColorConstants.blackLight),),
                                  ],
                                 ),
                               ),
@@ -197,9 +200,9 @@ class ShowButton extends StatelessWidget {
           ),
         ),
       );
-    }, child: Row(
+    }, child: const Row(
       children: [
-        Text("Ev,  ",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.bold,fontSize: 16),),
+        Text("Ev, ",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.bold,fontSize: 16),),
         Text("Zafer Gazoz, horoz sokak,bina..",style: TextStyle(color: Colors.black,fontFamily: 'OpenSans',fontWeight: FontWeight.w400),),
         SizedBox(width: 15),
         Icon(Icons.keyboard_arrow_down_outlined,color: ColorConstants.primaryColor,),
