@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
     super.initState();
     context.read<HomeCubit>().loadCategory();
     context.read<HomeCubit>().loadAdress();
-    pageController = PageController(viewportFraction: 0.8);
+    pageController = PageController(viewportFraction: 0.9);
     }
   @override
   Widget build(BuildContext context) {
@@ -30,108 +30,32 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 30.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                        Row(
-                            children: [
-                              TextButton(onPressed: () {
-                                showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  context: context,
-                                  builder: (context) => DraggableScrollableSheet(expand: false,
-                                    builder: (context, scrollController) => SingleChildScrollView(
-                                    controller: scrollController,
-                                    child: Column(
-                                        children: [
-
-                                          const Padding(
-                                            padding: EdgeInsets.only(right: 16, left:16,top: 32 ),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Text("Teslimat adresinizi seçin.",
-                                                  style: TextStyle(fontWeight: FontWeight.w400,color: ColorConstants.blackLight,fontSize: 16),),
-                                                Row(
-                                                  children: [
-                                                    Icon(Icons.location_on_outlined,color: ColorConstants.primaryColor,),
-                                                    Text(
-                                                      "Adreslerim",
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.bold,decoration: TextDecoration.underline,
-                                                          color: ColorConstants.primaryColor),
-
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Column(
-                                            children: [
-                                           BlocBuilder<HomeCubit,ListModels>(
-                                             builder: (context, state) {
-                                               if(state.adressModel.isNotEmpty){
-                                                return SizedBox(
-                                                  height: 400,
-                                                  width: 400,
-                                                  child: ListView.builder(
-                                                    itemCount: state.adressModel.length,
-                                                      itemBuilder: (context, index) {
-                                                      var adress = state.adressModel[index];
-                                                      return Container(
-                                                        decoration: const BoxDecoration(
-                                                            border: Border(top: BorderSide(color: ColorConstants.blackLight))),
-                                                        child: TextButton(onPressed: () {
-
-                                                        }, child: Column(
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset("assets/images/ic_home.png"),
-                                                                Text(adress.type_id.toString(),style: TextStyle(color: ColorConstants.blackLight),),
-                                                              ],
-                                                            ),
-                                                            Text(adress.adress_path,style: TextStyle(color: ColorConstants.blackLight),),
-                                                           ],
-                                                          ),
-                                                        ),
-                                                      );
-
-                                                      },
-
-                                                   ),
-                                                );
-                                               }else{
-                                                 return const Center();
-                                               }
-
-                                           },)
-                                            ],
-                                          ),
-
-                                          ],
-                                        ),
-                                    ),
-                                  ),
-                                );
-                              }, child: const Text("MEHMET AKİF ERSOY MAH")),
-
+                        Expanded(flex: 6,
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomRight: Radius.circular(12),topRight: Radius.circular(12))),
+                            child: Row(
+                                children: [
+                                  ShowButton(),
                     ],
                   ),
-                      Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),
-                                topLeft: Radius.circular(12)),color: ColorConstants.brandYellow,),
-                          child: const Column(
-                              children: [
-                                Text("Tvs",style: TextStyle(color: ColorConstants.primaryColor),),
-                                Text("15-20 dk",style: TextStyle(color: ColorConstants.primaryColor),),
-                              ],
-                            ),
                           ),
-
+                        ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                            color: ColorConstants.brandYellow,
+                            child: const Column(
+                                children: [
+                                  Text("TVS",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.w500),),
+                                  Text("35dk",style: TextStyle(color: ColorConstants.primaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                            ),
+                      ),
                     ],
                   ),
                 ),
@@ -145,9 +69,6 @@ class _HomeState extends State<Home> {
                     },
                   ),
                 ),
-
-
-
                 BlocBuilder<HomeCubit,ListModels>(
                     builder: (context, state) {
                       if(state.categoryModel.isNotEmpty){
@@ -171,7 +92,7 @@ class _HomeState extends State<Home> {
                                           borderRadius: BorderRadius.all(Radius.circular(12)),color: ColorConstants.greyLight),
                                       child: Image.asset(category.category_image,fit: BoxFit.contain),
                                     ),
-                                      Text(category.category_name,style: const TextStyle(fontFamily: 'OpenSans',fontWeight: FontWeight.w600),),
+                                      Text(category.category_name,style: const TextStyle(fontFamily: 'OpenSans',fontWeight: FontWeight.w600,fontSize: 14,color: ColorConstants.blackLight),),
                                   ],
                                 ),
                             );
@@ -187,5 +108,103 @@ class _HomeState extends State<Home> {
           ),
         ),
       );
+  }
+}
+
+class ShowButton extends StatelessWidget {
+  const ShowButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(onPressed: () {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => DraggableScrollableSheet(expand: false,
+          builder: (context, scrollController) => SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+              children: [
+
+                const Padding(
+                  padding: EdgeInsets.only(right: 16, left:16,top: 32 ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Teslimat adresinizi seçin.",
+                        style: TextStyle(fontWeight: FontWeight.w400,color: ColorConstants.blackLight,fontSize: 16),),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on_outlined,color: ColorConstants.primaryColor,),
+                          Text(
+                            "Adreslerim",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,decoration: TextDecoration.underline,
+                                color: ColorConstants.primaryColor),
+
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Column(
+                  children: [
+                 BlocBuilder<HomeCubit,ListModels>(
+                   builder: (context, state) {
+                     if(state.adressModel.isNotEmpty){
+                      return SizedBox(
+                        height: 400,
+                        width: 400,
+                        child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: state.adressModel.length,
+                            itemBuilder: (context, index) {
+                            var adress = state.adressModel[index];
+                            return Container(
+                              decoration: const BoxDecoration(
+                                  border: Border(top: BorderSide(color: ColorConstants.blackLight))),
+                              child: TextButton(onPressed: () {
+
+                              }, child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset("assets/images/ic_home.png"),
+                                      Text(adress.type.type_name,style: TextStyle(color: ColorConstants.blackLight),),
+                                    ],
+                                  ),
+                                  Text("${adress.adress_path} ${adress.city.city_name} Merkez",style: TextStyle(color: ColorConstants.blackLight),),
+                                 ],
+                                ),
+                              ),
+                             );
+                            },
+                         ),
+                      );
+                     }else{
+                       return const Center();
+                     }
+
+                 },)
+                  ],
+                ),
+
+                ],
+              ),
+          ),
+        ),
+      );
+    }, child: Row(
+      children: [
+        Text("Ev,  ",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.bold,fontSize: 16),),
+        Text("Zafer Gazoz, horoz sokak,bina..",style: TextStyle(color: Colors.black,fontFamily: 'OpenSans',fontWeight: FontWeight.w400),),
+        SizedBox(width: 15),
+        Icon(Icons.keyboard_arrow_down_outlined,color: ColorConstants.primaryColor,),
+
+      ],
+    ));
   }
 }

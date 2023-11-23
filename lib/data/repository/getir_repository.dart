@@ -1,6 +1,8 @@
 
 import 'package:getir_clone_app/data/entity/adress_model.dart';
 import 'package:getir_clone_app/data/entity/category_model.dart';
+import 'package:getir_clone_app/data/entity/city_model.dart';
+import 'package:getir_clone_app/data/entity/type_model.dart';
 import 'package:getir_clone_app/sqlite/database_assistant.dart';
 
 class GetirRepository {
@@ -22,15 +24,16 @@ class GetirRepository {
   }
   Future<List<AdressModel>> adressList() async{
     var db = await DatabaseAssistant.databaseAcces();
-    List<Map<String,dynamic>> rows = await db.rawQuery("SELECT * FROM adress");
+    List<Map<String,dynamic>> rows = await db.rawQuery("SELECT * FROM adress,city,type WHERE adress.type_id = type.type_id and adress.city_id = city.city_id");
+
+
     return List.generate(rows.length, (index){
       var row = rows[index];
-      var adress_id = row["adress_id"];
-      var adress_path = row["adress_path"];
-      var type_id = row["type_id"];
-      var city_id = row["city_id"];
+      var city = CityModel(row["city_id"], row["city_name"]);
+      var type = TypeModel(row["type_id"], row["type_name"]);
+      var adress = AdressModel(adress_id: row["adress_id"], adress_path: row["adress_path"], type: type, city: city);
 
-      return AdressModel(adress_id: adress_id, adress_path: adress_path, type_id: type_id, city_id: city_id);
+      return adress;
     });
 
   }
