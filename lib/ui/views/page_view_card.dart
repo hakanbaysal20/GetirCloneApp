@@ -13,7 +13,7 @@ class PageViewCard extends StatelessWidget {
       ),
       child: Container(
         width: double.infinity,
-        height: double.infinity, // Container'ın yüksekliğini ekledik
+        height: double.infinity,
         child: Image.asset(
           model.imageWithPath,
           fit: BoxFit.cover,

@@ -130,7 +130,6 @@ class ShowButton extends StatelessWidget {
           controller: scrollController,
           child: Column(
               children: [
-
                 const Padding(
                   padding: EdgeInsets.only(right: 16, left:16,top: 32 ),
                   child: Row(
@@ -203,7 +202,7 @@ class ShowButton extends StatelessWidget {
     }, child: const Row(
       children: [
         Text("Ev, ",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.bold,fontSize: 16),),
-        Text("Zafer Gazoz, horoz sokak,bina..",style: TextStyle(color: Colors.black,fontFamily: 'OpenSans',fontWeight: FontWeight.w400),),
+        Text("Mehmet Akif Ersoy, gazoz sok..",style: TextStyle(color: Colors.black,fontFamily: 'OpenSans',fontWeight: FontWeight.w400),),
         SizedBox(width: 15),
         Icon(Icons.keyboard_arrow_down_outlined,color: ColorConstants.primaryColor,),
 

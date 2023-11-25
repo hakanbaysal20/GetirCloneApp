@@ -42,6 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
             }, icon: const Icon(Icons.home,size: 32,color: ColorConstants.primaryColor,)),
             IconButton(onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Search(),));
 
             }, icon: const Icon(Icons.search,size: 32,color: ColorConstants.blackLight)),
             const SizedBox(width: 24),
