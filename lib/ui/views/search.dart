@@ -60,6 +60,7 @@ class _SearchState extends State<Search> {
 
             child: Row(
               children: [
+
                 Column(
                   children: [
                     Stack(
