@@ -16,7 +16,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
 
   int currentIndex = 0;
-  var pages = [const Home() , const Search(), const Discovery(), const Profile(), const Campaigns() ];
+  var pages = [const Home() , const Search(),const Profile() , const Discovery()];
  @override
 
   @override
@@ -38,7 +38,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             currentIndex = value;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.black54),label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.search,color: Colors.black54),label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.black54),label: ""),
