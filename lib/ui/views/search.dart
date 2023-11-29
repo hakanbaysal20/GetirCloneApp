@@ -14,9 +14,9 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFECECEC),
-      appBar: AppBar(title: Text("Arama",style: TextStyle(color: Colors.white)),backgroundColor: ColorConstants.primaryColor,centerTitle: true,automaticallyImplyLeading: false,),
+      appBar: AppBar(title: Text("Arama",style: TextStyle(fontSize: 16,color: Colors.white)),backgroundColor: ColorConstants.primaryColor,centerTitle: true,automaticallyImplyLeading: false,),
       body: Column(
-
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: double.infinity,
@@ -27,7 +27,7 @@ class _SearchState extends State<Search> {
                 children: [
                   Expanded(
                     child: TextField(
-                      decoration: InputDecoration(border:InputBorder.none,hintText: "Ürün Ara",icon: Icon(Icons.search)),
+                      decoration: InputDecoration(border:InputBorder.none,hintText: "Ürün Ara",hintStyle: TextStyle(color: Colors.black45,letterSpacing: 0.85),icon: Icon(Icons.search,color: ColorConstants.primaryColor,size: 30,)),
                       controller: search,
                     ),
                   ),
@@ -38,7 +38,10 @@ class _SearchState extends State<Search> {
               ),
             ),
           ),
-          Text("Popüler Aramalar",style: TextStyle(color: Colors.grey),),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text("Popüler Aramalar",style: TextStyle(color: Colors.black45,fontSize: 15),),
+          ),
           Container(
             color: Colors.white,
             child: Row(
@@ -52,12 +55,13 @@ class _SearchState extends State<Search> {
             ),
 
           ),
-          Text("Sık Aldıklarım",style: TextStyle(color: Colors.grey),),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text("Sık Aldıklarım",style: TextStyle(color: Colors.black45,fontSize: 15)),
+          ),
           Container(
             width: double.infinity,
             color: Colors.white,
-            height: 200,
-
             child: Row(
               children: [
 
@@ -76,7 +80,6 @@ class _SearchState extends State<Search> {
                             child: Image.asset("assets/images/im_drink.png",),
                           ),
                         ),
-
                         IconButton(
                             style: IconButton.styleFrom(backgroundColor: Colors.white,shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black12),borderRadius: BorderRadius.all(Radius.circular(12)))),
                             onPressed: () {
@@ -84,7 +87,9 @@ class _SearchState extends State<Search> {
                             }, icon: Icon(Icons.add,color: ColorConstants.primaryColor,)),
                       ],
                     ),
-                    Text("₺ 21,99",style: TextStyle(color: ColorConstants.primaryColor,fontWeight: FontWeight.bold)),
+                    Text("₺21,99",style: TextStyle(fontSize: 16,color: ColorConstants.primaryColor,fontWeight: FontWeight.bold)),
+                    Text("Ülker Çikolatalı Gofret",textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.w500),),
+                    Text("5 x 36 g",style: TextStyle(fontSize: 13,color: Colors.black45),),
 
                   ],
                 ),

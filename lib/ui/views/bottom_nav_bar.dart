@@ -31,29 +31,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
         },child: Image.asset("assets/images/ic_fab.png",color:ColorConstants.brandYellow,height: 50,width: 50,)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        height: 60,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (value) {
+          setState(() {
+            currentIndex = value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.black54),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.search,color: Colors.black54),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.black54),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.card_giftcard,color: Colors.black54),label: ""),
 
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            IconButton(onPressed: () {
-
-            }, icon: const Icon(Icons.home,size: 32,color: ColorConstants.primaryColor,)),
-            IconButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Search(),));
-
-            }, icon: const Icon(Icons.search,size: 32,color: ColorConstants.blackLight)),
-            const SizedBox(width: 24),
-            IconButton(onPressed: () {
-
-            }, icon: const Icon(Icons.person,size: 32,color: ColorConstants.blackLight)),
-            IconButton(onPressed: () {
-
-            }, icon: const Icon(Icons.card_giftcard,size: 32,color: ColorConstants.blackLight)),
-          ],
-        ),
+        ],
       ),
     );
   }
